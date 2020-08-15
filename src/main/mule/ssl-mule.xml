@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:tls="http://www.mulesoft.org/schema/mule/tls" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/tls http://www.mulesoft.org/schema/mule/tls/current/mule-tls.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="29cf9425-d8c8-4653-8bc7-c394c8c27cfd" >
+		<http:listener-connection protocol="HTTPS" host="0.0.0.0" port="8081" >
+			<tls:context >
+				<tls:key-store type="jks" path="d:/keydemo/siva-keystore.jks" keyPassword="siva" password="viswanath" />
+			</tls:context>
+		</http:listener-connection>
+	</http:listener-config>
+	<flow name="ssl-muleFlow" doc:id="2064c929-f99b-4d78-bf70-1ff71d3f4fea" >
+		<http:listener doc:name="Listener" doc:id="089ed854-1840-4019-a1fc-5a2b823b60ba" config-ref="HTTP_Listener_config" path="/test"/>
+		<set-payload value='"Success"' doc:name="Set Payload" doc:id="631d815f-9fae-4d26-b48d-ebdfe2d98e5c" />
+	</flow>
+</mule>
